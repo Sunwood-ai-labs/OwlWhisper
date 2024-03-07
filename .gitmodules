@@ -1,0 +1,6 @@
+[submodule "Style-Bert-VITS2"]
+	path = Style-Bert-VITS2
+	url = https://github.com/Sunwood-ai-labs/Style-Bert-VITS2.git
+[submodule "faster-whisper-docker"]
+	path = faster-whisper-docker
+	url = https://github.com/Sunwood-ai-labs/faster-whisper-docker.git
