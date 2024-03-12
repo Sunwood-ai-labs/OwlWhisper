@@ -4,3 +4,6 @@
 [submodule "faster-whisper-docker"]
 	path = faster-whisper-docker
 	url = https://github.com/Sunwood-ai-labs/faster-whisper-docker.git
+[submodule "YlvaVisionAPI"]
+	path = YlvaVisionAPI
+	url = https://github.com/Sunwood-ai-labs/YlvaVisionAPI.git
