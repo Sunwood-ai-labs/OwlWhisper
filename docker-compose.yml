@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+
+  style-bert-vits2-api:
+    build: 
+      context: .
+      dockerfile: Style-Bert-VITS2/Dockerfile.external
+
+    volumes:
+      - ./Style-Bert-VITS2:/app
+      - ./Style-Bert-VITS2/model_assets:/model_assets
+      - ./Style-Bert-VITS2/Data:/Data
+
+    ports:
+      - "8000:8000"
+      - "5000:5000"
+    tty: true
+    working_dir: /app
+    command: >
+      sh -c "python initialize.py && 
+             python server_fastapi.py"
+
+  # fast-wisper-api:
+  #   build: 
+  #     context: .
+  #     dockerfile: faster-whisper-docker/Dockerfile
+  #   volumes:
+  #     - ./faster-whisper-docker:/app
+  #     - ./faster-whisper-docker/.cache:/root/.cache
+  #     - /tmp/.X11-unix:/tmp/.X11-unix
+  #     - /mnt/wslg:/mnt/wslg
+  #     # - ./faster-whisper-docker/.streamlit:/root/.streamlit
+
+  #   environment:
+  #     - PULSE_SERVER=/mnt/wslg/PulseServer
+  #     - DISPLAY=$DISPLAY
+  #     # - PULSE_SERVER=$PULSE_SERVER
+  #     - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+  #     - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+  #   ports:
+  #     - 8502:8502
+  #     - 8503:8503
+  #     - 8181:8181
+  #   env_file:
+  #     - .env
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [ gpu ]
+  #   working_dir: /app
+  #   tty: true
+  #   # command: streamlit run streamlit/main.py --server.port 8181
+  #   # command: python faster_whisper_api_server.py
+  #   command: uvicorn faster_whisper_api_server:app --reload  --host=0.0.0.0 --port=8181
