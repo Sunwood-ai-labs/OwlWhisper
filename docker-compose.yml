@@ -21,38 +21,73 @@ services:
       sh -c "python initialize.py && 
              python server_fastapi.py"
 
-  # fast-wisper-api:
-  #   build: 
-  #     context: .
-  #     dockerfile: faster-whisper-docker/Dockerfile
-  #   volumes:
-  #     - ./faster-whisper-docker:/app
-  #     - ./faster-whisper-docker/.cache:/root/.cache
-  #     - /tmp/.X11-unix:/tmp/.X11-unix
-  #     - /mnt/wslg:/mnt/wslg
-  #     # - ./faster-whisper-docker/.streamlit:/root/.streamlit
+  owl-wisper:
+    build: .
+    volumes:
+      - ./streamlit:/app
+      - ./demo:/demo
+      - ./.cache:/root/.cache
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
+      - ./.streamlit:/root/.streamlit
 
-  #   environment:
-  #     - PULSE_SERVER=/mnt/wslg/PulseServer
-  #     - DISPLAY=$DISPLAY
-  #     # - PULSE_SERVER=$PULSE_SERVER
-  #     - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
-  #     - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
-  #   ports:
-  #     - 8502:8502
-  #     - 8503:8503
-  #     - 8181:8181
-  #   env_file:
-  #     - .env
-  #   deploy:
-  #     resources:
-  #       reservations:
-  #         devices:
-  #           - driver: nvidia
-  #             count: 1
-  #             capabilities: [ gpu ]
-  #   working_dir: /app
-  #   tty: true
-  #   # command: streamlit run streamlit/main.py --server.port 8181
-  #   # command: python faster_whisper_api_server.py
-  #   command: uvicorn faster_whisper_api_server:app --reload  --host=0.0.0.0 --port=8181
+    environment:
+      - PULSE_SERVER=/mnt/wslg/PulseServer
+      - DISPLAY=$DISPLAY
+      # - PULSE_SERVER=$PULSE_SERVER
+      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+      - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+    ports:
+      - 8502:8502
+      - 8503:8503
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    working_dir: /app
+    tty: true
+    command: streamlit run main.py --server.port 8502
+    # network_mode: "host"
+
+
+  fast-wisper-api:
+    build: 
+      context: .
+      dockerfile: faster-whisper-docker/Dockerfile
+    volumes:
+      - ./faster-whisper-docker:/app
+      - ./faster-whisper-docker/.cache:/root/.cache
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
+      # - ./faster-whisper-docker/.streamlit:/root/.streamlit
+
+    environment:
+      - PULSE_SERVER=/mnt/wslg/PulseServer
+      - DISPLAY=$DISPLAY
+      # - PULSE_SERVER=$PULSE_SERVER
+      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+      - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+    ports:
+      # - 8502:8502
+      # - 8503:8503
+      - 8181:8181
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    working_dir: /app
+    tty: true
+    # command: streamlit run streamlit/main.py --server.port 8181
+    # command: python faster_whisper_api_server.py
+    command: uvicorn faster_whisper_api_server:app --reload  --host=0.0.0.0 --port=8181
+  # uvicorn api.camera_server_broadcast:app --reload  --host=0.0.0.0 --port=8000
