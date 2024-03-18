@@ -71,9 +71,9 @@ maki@TurtleTower:/mnt/c/Prj/OwlWhisper$ docker-compose up
 - チャットボットは、Streamlitアプリケーションとして `http://localhost:8502` で利用できます。
 
 
-![alt text](docs\image.png)
+![alt text](https://raw.githubusercontent.com/Sunwood-ai-labs/OwlWhisper/main/docs/image.png)
 
 ### キャラクターの描画
 
 Vtude Studioでキャラクターを描画してOBS Studio等で重ねてください
-![alt text](docs\image2.png)
+![alt text](https://raw.githubusercontent.com/Sunwood-ai-labs/OwlWhisper/main/docs/image2.png)
