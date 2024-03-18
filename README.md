@@ -27,6 +27,16 @@ OwlWhisperは、高速な音声認識ライブラリ「Faster Whisper」と、�
 1. このリポジトリをクローンします。
 2. WSL2とDockerをインストールし、設定します。
 3. NVIDIA GPUとCUDAドライバーを正しくインストールします。
+4. .envファイルの設定(`.env.example`を参考にしてください)
+
+```bash
+
+GOOGLE_AI_STUDIO_API_KEY=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+CAMERA_URL=http://host.docker.internal:8100/camera
+FAST_WISPER_API_URL=http://fast-wisper-api:8181/transcribe
+STYLE_BERT_VITS2_API_URL=http://style-bert-vits2-api:5000/voice
+
+```
 
 ## Webカメラ API の起動方法
 
@@ -54,13 +64,16 @@ maki@TurtleTower:/mnt/c/Prj/OwlWhisper$ docker-compose up
 
 ## 使い方
 
+
+### Chatbotの起動
+
 - Webカメラ APIは、`http://localhost:8100` でアクセスできます。
 - チャットボットは、Streamlitアプリケーションとして `http://localhost:8502` で利用できます。
 
-## ライセンス
 
-このプロジェクトは [MIT ライセンス](LICENSE) の下で公開されています。
+![alt text](docs\image.png)
 
-## 問い合わせ
+### キャラクターの描画
 
-質問やフィードバックがある場合は、Issueを開くか、プロジェクトオーナーにご連絡ください。
+Vtude Studioでキャラクターを描画してOBS Studio等で重ねてください
+![alt text](docs\image2.png)
