@@ -24,7 +24,7 @@ st.title("Owl Wisper DEMO")
 # サイドバーの設定
 with st.sidebar:
     st.markdown("""
-        <img src="https://raw.githubusercontent.com/Sunwood-ai-labs/OwlWhisper/main/docs/OwlWhisper.png" height=400px align="left"/>
+        <img src="https://raw.githubusercontent.com/Sunwood-ai-labs/OwlWhisper/main/docs/OwlWhisper.png" height=200px align="left"/>
         """, unsafe_allow_html=True)
     
     # 音声録音ウィジェット
