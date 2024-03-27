@@ -11,4 +11,4 @@ RUN pip install --upgrade pip  \
                 fastapi uvicorn python-multipart \
                 google-generativeai 
 RUN pip install opencv-python streamlit-webrtc
-RUN pip install audio-recorder-streamlit
+RUN pip install audio-recorder-streamlit pydub

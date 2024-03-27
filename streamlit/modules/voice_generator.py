@@ -7,7 +7,7 @@ def generate_voice(text):
     params = {
         "text": text,
         "encoding": "utf-8",
-        "model_id": 0,
+        "model_id": 1,
         "speaker_id": 0,
         "sdp_ratio": 0.2,
         "noise": 0.6,

@@ -25,6 +25,7 @@ services:
     build: .
     volumes:
       - ./streamlit:/app
+      - ./audio:/audio
       - ./demo:/demo
       - ./.cache:/root/.cache
       - /tmp/.X11-unix:/tmp/.X11-unix
